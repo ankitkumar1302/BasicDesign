@@ -20,6 +20,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.graphicsLayer
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.viprab.basicdesign.components.BookItemCard
@@ -49,7 +50,7 @@ fun HomeScreen(
         ) {
             items(books) { book ->
                 var isClicked by remember { mutableStateOf(false) }
-                val scale by animateFloatAsState(if (isClicked) 0.95f else 1f)
+                val scale by animateFloatAsState(if (isClicked) 0.95f else 1f, label = "")
 
                 BookItemCard(
                     book = book,
@@ -60,13 +61,6 @@ fun HomeScreen(
                             onBookClick(book)
                             isClicked = false
                         },
-//                    onReviewsClick = {
-//                        onBookClick(book)
-//                    }, onLikesClick = {
-//                        onBookClick(book)
-//                    }, onSharesClick = {
-//                        onBookClick(book)
-//                    },
                     onClick = {
                         onBookClick(book)
                     }
@@ -74,4 +68,9 @@ fun HomeScreen(
             }
         }
     }
+}
+@Composable
+@Preview
+fun HomeScreenPreview() {
+    HomeScreen(onBookClick = {})
 }
