@@ -61,7 +61,6 @@ fun ProfilePage(viewModel: ProfileViewModel = viewModel()) {
 
         Spacer(modifier = Modifier.height(32.dp))
 
-        // Additional Info
         Column(
             modifier = Modifier
                 .fillMaxWidth()
