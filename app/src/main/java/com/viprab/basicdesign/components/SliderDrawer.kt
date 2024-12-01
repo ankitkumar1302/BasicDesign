@@ -1,5 +1,3 @@
-// SlideDrawer.kt
-
 package com.viprab.basicdesign.components
 
 import androidx.compose.animation.core.animateDpAsState
@@ -12,6 +10,7 @@ import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.automirrored.filled.Logout
 import androidx.compose.material.icons.filled.Home
 import androidx.compose.material.icons.filled.Logout
 import androidx.compose.material.icons.filled.Person
@@ -46,11 +45,13 @@ fun SlideDrawer(
     // Configure easing functions for smoother animations with explicit types
     val offset: Dp by animateDpAsState(
         targetValue = if (drawerState.isOpen) drawerWidth else 0.dp,
-        animationSpec = tween(durationMillis = 400, easing = androidx.compose.animation.core.FastOutSlowInEasing)
+        animationSpec = tween(durationMillis = 400, easing = androidx.compose.animation.core.FastOutSlowInEasing),
+        label = ""
     )
     val scale: Float by animateFloatAsState(
         targetValue = if (drawerState.isOpen) 0.85f else 1f,
-        animationSpec = tween(durationMillis = 400, easing = androidx.compose.animation.core.FastOutSlowInEasing)
+        animationSpec = tween(durationMillis = 400, easing = androidx.compose.animation.core.FastOutSlowInEasing),
+        label = ""
     )
 
     val overlayColor = Color(0xFF1E1E2C)
@@ -93,7 +94,7 @@ fun SlideDrawer(
                 DrawerItem(icon = Icons.Default.Person, label = "Profile") {
                     closeDrawer(scope, drawerState, "profile", onItemClick)
                 }
-                DrawerItem(icon = Icons.Default.Logout, label = "Logout") {
+                DrawerItem(icon = Icons.AutoMirrored.Filled.Logout, label = "Logout") {
                     closeDrawer(scope, drawerState, "logout", onItemClick)
                 }
             }
