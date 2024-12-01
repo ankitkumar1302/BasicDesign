@@ -1,30 +1,16 @@
 package com.viprab.basicdesign.components
 
+import android.annotation.SuppressLint
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
-import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Box
-import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.Spacer
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.height
-import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.size
-import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.automirrored.filled.Comment
 import androidx.compose.material.icons.filled.Favorite
 import androidx.compose.material.icons.filled.Share
 import androidx.compose.material.icons.filled.Star
-import androidx.compose.material3.Card
-import androidx.compose.material3.CardDefaults
-import androidx.compose.material3.Icon
-import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.Surface
-import androidx.compose.material3.Text
+import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -34,12 +20,12 @@ import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.style.TextOverflow
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import coil.compose.rememberAsyncImagePainter
 import coil.request.ImageRequest
 import com.viprab.basicdesign.R
 import com.viprab.basicdesign.model.Book
-import com.viprab.basicdesign.ui.theme.AccentColor
 import com.viprab.basicdesign.ui.theme.SurfaceColor
 import com.viprab.basicdesign.ui.theme.TextPrimary
 import com.viprab.basicdesign.ui.theme.TextSecondary
@@ -60,12 +46,13 @@ fun BookItemCard(
     ) {
         Column(
             modifier = Modifier.padding(16.dp),
-            horizontalAlignment = Alignment.CenterHorizontally
+            horizontalAlignment = Alignment.CenterHorizontally // Aligns content horizontally to the center
         ) {
+            // Book Image Section
             Box(
                 modifier = Modifier
                     .fillMaxWidth()
-                    .height(200.dp)
+                    .height(180.dp)
             ) {
                 Image(
                     painter = rememberAsyncImagePainter(
@@ -82,72 +69,60 @@ fun BookItemCard(
                         .fillMaxSize()
                         .clip(RoundedCornerShape(12.dp))
                 )
-
-                // Rating badge
-                Surface(
-                    modifier = Modifier
-                        .padding(8.dp)
-                        .align(Alignment.TopEnd),
-                    color = AccentColor.copy(alpha = 0.9f),
-                    shape = RoundedCornerShape(8.dp)
-                ) {
-                    Row(
-                        modifier = Modifier.padding(horizontal = 8.dp, vertical = 4.dp),
-                        verticalAlignment = Alignment.CenterVertically
-                    ) {
-                        Icon(
-                            imageVector = Icons.Default.Star,
-                            contentDescription = null,
-                            tint = Color.White,
-                            modifier = Modifier.size(16.dp)
-                        )
-                        Spacer(modifier = Modifier.width(4.dp))
-                        Text(
-                            text = book.rating.toString(),
-                            color = Color.White,
-                            style = MaterialTheme.typography.labelMedium
-                        )
-                    }
-                }
             }
 
             Spacer(modifier = Modifier.height(12.dp))
 
-            Text(
-                text = book.title,
-                style = MaterialTheme.typography.titleMedium,
-                color = TextPrimary,
-                maxLines = 1,
-                overflow = TextOverflow.Ellipsis
-            )
+            // Center-Aligned Title and Author
+            Column(
+                horizontalAlignment = Alignment.CenterHorizontally, // Center-aligns the text and author
+                modifier = Modifier.fillMaxWidth()
+            ) {
+                Text(
+                    text = book.title,
+                    style = MaterialTheme.typography.titleMedium,
+                    color = TextPrimary,
+                    maxLines = 1,
+                    overflow = TextOverflow.Ellipsis
+                )
 
-            Text(
-                text = "by ${book.author}",
-                style = MaterialTheme.typography.bodyMedium,
-                color = TextSecondary,
-                maxLines = 1
-            )
+                Text(
+                    text = "by ${book.author}",
+                    style = MaterialTheme.typography.bodySmall,
+                    color = TextSecondary,
+                    maxLines = 1
+                )
+            }
 
-            Spacer(modifier = Modifier.height(8.dp))
+            Spacer(modifier = Modifier.height(12.dp))
 
+            // Statistic Badges
             Row(
                 modifier = Modifier.fillMaxWidth(),
-                horizontalArrangement = Arrangement.SpaceEvenly
+                horizontalArrangement = Arrangement.SpaceBetween
             ) {
+                // Rating Badge
                 StatisticItem(
-                    count = book.reviewsCount,
-                    icon = Icons.AutoMirrored.Filled.Comment,
-                    contentDescription = "Reviews"
+                    label = "${book.rating} / 5",
+                    icon = Icons.Default.Star,
+                    backgroundColor = Color(0xFF2D2B40),
+                    iconColor = Color(0xFFFFC107)
                 )
+
+                // Likes Badge
                 StatisticItem(
-                    count = book.likes,
+                    label = "${formatCount(book.likes)} Likes",
                     icon = Icons.Default.Favorite,
-                    contentDescription = "Likes"
+                    backgroundColor = Color(0xFF2D2B40),
+                    iconColor = Color(0xFF4CAF50)
                 )
+
+                // Shares Badge
                 StatisticItem(
-                    count = book.shares,
+                    label = "${formatCount(book.shares)} Shares",
                     icon = Icons.Default.Share,
-                    contentDescription = "Shares"
+                    backgroundColor = Color(0xFF2D2B40),
+                    iconColor = Color(0xFF03A9F4)
                 )
             }
         }
@@ -156,33 +131,64 @@ fun BookItemCard(
 
 @Composable
 private fun StatisticItem(
-    count: Int,
+    label: String,
     icon: ImageVector,
-    contentDescription: String
+    backgroundColor: Color = Color(0xFF33334D),
+    iconColor: Color,
+    textColor: Color = Color.White
 ) {
-    Row(
-        verticalAlignment = Alignment.CenterVertically,
-        horizontalArrangement = Arrangement.Center
+    Surface(
+        modifier = Modifier
+            .clip(RoundedCornerShape(24.dp)) // Fully rounded
+            .background(backgroundColor)
+            .padding(horizontal = 12.dp, vertical = 6.dp), // Padding for badge shape
+        color = backgroundColor
     ) {
-        Icon(
-            imageVector = icon,
-            contentDescription = contentDescription,
-            tint = TextSecondary,
-            modifier = Modifier.size(16.dp)
-        )
-        Spacer(modifier = Modifier.width(4.dp))
-        Text(
-            text = formatCount(count),
-            style = MaterialTheme.typography.bodySmall,
-            color = TextSecondary
-        )
+        Row(
+            verticalAlignment = Alignment.CenterVertically,
+            horizontalArrangement = Arrangement.Center
+        ) {
+            Icon(
+                imageVector = icon,
+                contentDescription = null,
+                tint = iconColor, // Icon color
+                modifier = Modifier.size(18.dp)
+            )
+            Spacer(modifier = Modifier.width(8.dp))
+            Text(
+                text = label,
+                style = MaterialTheme.typography.bodySmall,
+                color = textColor,
+            )
+        }
     }
 }
 
+@SuppressLint("DefaultLocale")
 private fun formatCount(count: Int): String {
     return when {
-        count >= 1000000 -> String.format("%.1fM", count / 1000000.0)
-        count >= 1000 -> String.format("%.1fK", count / 1000.0)
-        else -> count.toString()
+        count >= 1000000000 -> String.format("%.1fB", count / 1000000000.0) // Format for billions
+        count >= 1000000 -> String.format("%.1fM", count / 1000000.0) // Format for millions
+        count >= 1000 -> String.format("%.1fK", count / 1000.0) // Format for thousands
+        else -> count.toString() // Small numbers remain unchanged
     }
+}
+
+@Composable
+@Preview
+fun BookItemCardPreview() {
+    BookItemCard(
+        book = Book(
+            id = 5,
+            title = "The Great Gatsby",
+            author = "F. Scott Fitzgerald",
+            coverImageUrl = "https://images.unsplash.com/photo-1612838320302-4b3b3b3b3b3b",
+            rating = 4.5,
+            reviewsCount = 1234,
+            likes = 1234567,
+            description = "A classic novel of the Roaring Twenties that explores themes of wealth, love, and the American Dream.",
+            shares = 987654321
+        ),
+        onClick = {}
+    )
 }

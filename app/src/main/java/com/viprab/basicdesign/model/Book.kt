@@ -66,5 +66,116 @@ val sampleBooks = listOf(
         reviewsCount = 130,
         likes = 220,
         shares = 70
+    ),
+    Book(
+        id = 6,
+        title = "The Great Gatsby",
+        author = "F. Scott Fitzgerald",
+        coverImageUrl = "https://i.pinimg.com/736x/94/28/0a/94280a7d3a55588fafadea6657f43131.jpg",
+        description = "A classic novel of the Roaring Twenties that explores themes of wealth, love, and the American Dream.",
+        rating = 4.6,
+        reviewsCount = 1000,
+        likes = 1400,
+        shares = 350
+    ),
+    Book(
+        id = 7,
+        title = "War and Peace",
+        author = "Leo Tolstoy",
+        coverImageUrl = "https://i.pinimg.com/736x/fc/21/7b/fc217bfd114d9db1e728cf62bd0ccd5b.jpg",
+        description = "An epic tale of love, war, and the lives of Russian aristocrats during the Napoleonic era.",
+        rating = 4.8,
+        reviewsCount = 750,
+        likes = 1100,
+        shares = 300
+    ),
+    Book(
+        id = 8,
+        title = "The Hobbit",
+        author = "J.R.R. Tolkien",
+        coverImageUrl = "https://i.pinimg.com/564x/3e/93/95/3e93953e9bc9e91dcbdd0949c477ca0b.jpg",
+        description = "A fantasy adventure that follows Bilbo Baggins on his quest to reclaim treasure from a dragon.",
+        rating = 4.9,
+        reviewsCount = 1100,
+        likes = 1800,
+        shares = 600
+    ),
+    Book(
+        id = 9,
+        title = "Brave New World",
+        author = "Aldous Huxley",
+        coverImageUrl = "https://i.pinimg.com/736x/d5/85/ec/d585ec4cf68d1babf6ba5a7027e8ffd0.jpg",
+        description = "A dystopian novel about a society where technology and conditioning control humanity.",
+        rating = 4.5,
+        reviewsCount = 700,
+        likes = 950,
+        shares = 240
+    ),
+    Book(
+        id = 10,
+        title = "Jane Eyre",
+        author = "Charlotte Brontë",
+        coverImageUrl = "https://i.pinimg.com/736x/3f/3c/03/3f3c03840021f8d45be86614d58fc645.jpg",
+        description = "A gothic romance about an orphaned governess and her mysterious employer.",
+        rating = 4.7,
+        reviewsCount = 850,
+        likes = 1250,
+        shares = 400
+    ),
+    Book(
+        id = 11,
+        title = "Crime and Punishment",
+        author = "Fyodor Dostoevsky",
+        coverImageUrl = "https://i.pinimg.com/736x/70/da/a2/70daa2ba9b0be3cb5c2fc47f1f409f8a.jpg",
+        description = "A psychological novel exploring guilt, redemption, and morality through the story of a young man who commits a crime.",
+        rating = 4.6,
+        reviewsCount = 820,
+        likes = 1100,
+        shares = 370
+    ),
+    Book(
+        id = 12,
+        title = "The Lord of the Rings",
+        author = "J.R.R. Tolkien",
+        coverImageUrl = "https://i.pinimg.com/736x/03/a3/ad/03a3ad366e04efa5997cadf813c6c7b4.jpg",
+        description = "An epic fantasy adventure about the quest to destroy the One Ring and save Middle-earth.",
+        rating = 4.9,
+        reviewsCount = 2000,
+        likes = 3000,
+        shares = 800
+    ),
+    Book(
+        id = 13,
+        title = "Frankenstein",
+        author = "Mary Shelley",
+        coverImageUrl = "https://i.pinimg.com/736x/ce/f8/4a/cef84a3c5fc21b3386f47c4d90cc1fdb.jpg",
+        description = "A gothic horror tale about a scientist who creates a living being, with tragic consequences.",
+        rating = 4.4,
+        reviewsCount = 500,
+        likes = 850,
+        shares = 210
+    ),
+    Book(
+        id = 14,
+        title = "The Odyssey",
+        author = "Homer",
+        coverImageUrl = "https://i.pinimg.com/736x/a2/ca/b9/a2cab9763c44c99b169282b5146b76cb.jpg",
+        description = "An ancient Greek epic poem about the journey of Odysseus returning home after the Trojan War.",
+        rating = 4.7,
+        reviewsCount = 650,
+        likes = 900,
+        shares = 290
+    ),
+    Book(
+        id = 15,
+        title = "The Divine Comedy",
+        author = "Dante Alighieri",
+        coverImageUrl = "https://i.pinimg.com/736x/78/c1/c5/78c1c592187da5216560a126afae2255.jpg",
+        description = "An allegorical journey through Hell, Purgatory, and Heaven, exploring themes of sin, redemption, and divine justice.",
+        rating = 4.8,
+        reviewsCount = 1200,
+        likes = 2000,
+        shares = 600
     )
+
 )

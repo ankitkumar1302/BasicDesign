@@ -3,18 +3,16 @@ package com.viprab.basicdesign.navigation
 import androidx.compose.animation.AnimatedContentTransitionScope
 import androidx.compose.animation.ExperimentalAnimationApi
 import androidx.compose.animation.core.tween
-import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import androidx.navigation.NavController
 import androidx.navigation.NavHostController
 import com.google.accompanist.navigation.animation.AnimatedNavHost
 import com.google.accompanist.navigation.animation.composable
-import com.viprab.basicdesign.model.Book
 import com.viprab.basicdesign.ui.detail.DetailScreen
 import com.viprab.basicdesign.ui.favorites.FavoritesScreen
 import com.viprab.basicdesign.ui.genres.GenresScreen
 import com.viprab.basicdesign.ui.home.HomeScreen
+import com.viprab.basicdesign.ui.profile.ProfilePage
 
 @OptIn(ExperimentalAnimationApi::class)
 @Composable
@@ -87,7 +85,7 @@ fun NavigationHost(navController: NavHostController, modifier: Modifier = Modifi
                 )
             }
         ) {
-            GenresScreen(navController = navController)
+            GenresScreen()
         }
 
         // Favorites screen route
@@ -153,6 +151,36 @@ fun NavigationHost(navController: NavHostController, modifier: Modifier = Modifi
             bookId?.let {
                 DetailScreen(navController, it)
             }
+        }
+        // Profile Route
+        composable(
+            route = "profile",
+            enterTransition = {
+                slideIntoContainer(
+                    AnimatedContentTransitionScope.SlideDirection.Left,
+                    animationSpec = tween(300)
+                )
+            },
+            exitTransition = {
+                slideOutOfContainer(
+                    AnimatedContentTransitionScope.SlideDirection.Left,
+                    animationSpec = tween(300)
+                )
+            },
+            popEnterTransition = {
+                slideIntoContainer(
+                    AnimatedContentTransitionScope.SlideDirection.Right,
+                    animationSpec = tween(300)
+                )
+            },
+            popExitTransition = {
+                slideOutOfContainer(
+                    AnimatedContentTransitionScope.SlideDirection.Right,
+                    animationSpec = tween(300)
+                )
+            }
+        ) {
+            ProfilePage()
         }
     }
 }

@@ -1,18 +1,29 @@
 package com.viprab.basicdesign.components
 
+import android.annotation.SuppressLint
 import androidx.compose.animation.core.animateDpAsState
 import androidx.compose.animation.core.animateFloatAsState
 import androidx.compose.animation.core.tween
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
-import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxHeight
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.offset
+import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.Logout
 import androidx.compose.material.icons.filled.Home
-import androidx.compose.material.icons.filled.Logout
 import androidx.compose.material.icons.filled.Person
 import androidx.compose.material3.DrawerState
 import androidx.compose.material3.Icon
@@ -33,6 +44,7 @@ import com.viprab.basicdesign.R
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch
 
+@SuppressLint("UseOfNonLambdaOffsetOverload")
 @Composable
 fun SlideDrawer(
     drawerState: DrawerState,
@@ -42,29 +54,32 @@ fun SlideDrawer(
     val scope = rememberCoroutineScope()
     val drawerWidth = 280.dp
 
-    // Configure easing functions for smoother animations with explicit types
     val offset: Dp by animateDpAsState(
         targetValue = if (drawerState.isOpen) drawerWidth else 0.dp,
-        animationSpec = tween(durationMillis = 400, easing = androidx.compose.animation.core.FastOutSlowInEasing),
+        animationSpec = tween(
+            durationMillis = 400,
+            easing = androidx.compose.animation.core.FastOutSlowInEasing
+        ),
         label = ""
     )
     val scale: Float by animateFloatAsState(
         targetValue = if (drawerState.isOpen) 0.85f else 1f,
-        animationSpec = tween(durationMillis = 400, easing = androidx.compose.animation.core.FastOutSlowInEasing),
+        animationSpec = tween(
+            durationMillis = 400,
+            easing = androidx.compose.animation.core.FastOutSlowInEasing
+        ),
         label = ""
     )
 
     val overlayColor = Color(0xFF1E1E2C)
 
     Box(modifier = Modifier.fillMaxSize()) {
-        // Overlay color behind the main content
         Box(
             modifier = Modifier
                 .fillMaxSize()
                 .background(if (drawerState.isOpen) overlayColor else Color(0xFF1E1E2C))
         )
 
-        // Main content with offset, scaling animation, and dismiss-on-click action
         content(
             Modifier
                 .offset(x = offset)
@@ -74,10 +89,9 @@ fun SlideDrawer(
                 .clickable(
                     enabled = drawerState.isOpen,
                     onClick = { scope.launch { drawerState.close() } }
-                ) // Close drawer on click outside
+                )
         )
 
-        // Drawer content, only visible when open
         if (drawerState.isOpen) {
             Column(
                 modifier = Modifier

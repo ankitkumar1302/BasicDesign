@@ -1,16 +1,19 @@
-// FavoritesScreen.kt
 package com.viprab.basicdesign.ui.favorites
 
 import androidx.compose.animation.animateContentSize
 import androidx.compose.foundation.background
-import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.PaddingValues
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material3.*
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
-import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.graphics.Brush
@@ -24,7 +27,11 @@ import com.viprab.basicdesign.components.BookItemCard
 import com.viprab.basicdesign.model.Book
 
 @Composable
-fun FavoritesScreen(viewModel: FavoritesViewModel = viewModel(), onBookClick: (Book) -> Unit = {},navController: NavController) {
+fun FavoritesScreen(
+    viewModel: FavoritesViewModel = viewModel(),
+    onBookClick: (Book) -> Unit = {},
+    navController: NavController
+) {
     val books = viewModel.favoritesBooks.collectAsState().value
 
     Box(
@@ -49,6 +56,9 @@ fun FavoritesScreen(viewModel: FavoritesViewModel = viewModel(), onBookClick: (B
                         .shadow(elevation = 8.dp, shape = RoundedCornerShape(12.dp))
                         .fillMaxWidth()
                         .background(MaterialTheme.colorScheme.surface, RoundedCornerShape(12.dp)),
+//                    onReviewsClick = { onBookClick(book) },
+//                    onLikesClick = { onBookClick(book) },
+//                    onSharesClick = { onBookClick(book) },
                     onClick = { onBookClick(book) }
                 )
             }
@@ -59,7 +69,9 @@ fun FavoritesScreen(viewModel: FavoritesViewModel = viewModel(), onBookClick: (B
 @Preview
 @Composable
 fun FavoritesScreenPreview() {
-    FavoritesScreen(navController = NavController(
-        context = LocalContext.current
-    ))
+    FavoritesScreen(
+        navController = NavController(
+            context = LocalContext.current
+        )
+    )
 }

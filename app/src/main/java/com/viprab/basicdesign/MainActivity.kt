@@ -10,8 +10,17 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Menu
-import androidx.compose.material3.*
+import androidx.compose.material3.DrawerValue
+import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.Icon
+import androidx.compose.material3.IconButton
+import androidx.compose.material3.Scaffold
+import androidx.compose.material3.Text
+import androidx.compose.material3.TopAppBar
+import androidx.compose.material3.TopAppBarDefaults
+import androidx.compose.material3.rememberDrawerState
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.shadow
@@ -45,13 +54,28 @@ fun MainApp() {
     val drawerState = rememberDrawerState(DrawerValue.Closed)
     val scope = rememberCoroutineScope()
     val commonBarColor = Color(0xCC1E1E2C) // Common bar color
-    val mainRoutes = listOf("home", "genres", "favorites") // Define main routes for swipe navigation
+    val mainRoutes =
+        listOf("home", "genres", "favorites") // Define main routes for swipe navigation
+
+    // Dynamic title based on the current screen
+    val currentDestination =
+        navController.currentBackStackEntryFlow.collectAsState(initial = navController.currentBackStackEntry)
+    val title = when (currentDestination.value?.destination?.route) {
+        "home" -> "Home"
+        "genres" -> "Genres"
+        "favorites" -> "Favorites"
+        "profile" -> "Profile"
+        else -> "My Novel"
+    }
 
     SlideDrawer(
         drawerState = drawerState,
         onItemClick = { destination ->
+            scope.launch {
+                if (drawerState.isOpen) drawerState.close()
+            }
             navController.navigate(destination) {
-                popUpTo(navController.graph.startDestinationId) { inclusive = true }
+                popUpTo(navController.graph.startDestinationId) { inclusive = false }
                 launchSingleTop = true
             }
         }
@@ -60,7 +84,7 @@ fun MainApp() {
             modifier = contentModifier,
             topBar = {
                 TopAppBar(
-                    title = { Text(text = "My Novel") },
+                    title = { Text(text = title) },
                     colors = TopAppBarDefaults.centerAlignedTopAppBarColors(
                         containerColor = commonBarColor,
                         titleContentColor = Color.White
@@ -92,10 +116,15 @@ fun MainApp() {
                 modifier = Modifier
                     .fillMaxSize()
                     .padding(innerPadding)
-                    .swipeNavigation(navController, mainRoutes) // Enable swipe navigation across main routes
+                    .swipeNavigation(
+                        navController,
+                        mainRoutes
+                    ) // Enable swipe navigation across main routes
             ) {
                 NavigationHost(navController = navController)
             }
         }
     }
 }
+
+
