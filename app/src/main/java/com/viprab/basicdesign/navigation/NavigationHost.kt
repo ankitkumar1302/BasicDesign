@@ -116,7 +116,7 @@ fun NavigationHost(navController: NavHostController, modifier: Modifier = Modifi
                 )
             }
         ) {
-            FavoritesScreen(navController = navController)
+            FavoritesScreen()
         }
 
         // Detail screen route

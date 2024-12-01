@@ -48,7 +48,7 @@ import com.viprab.basicdesign.ui.theme.BasicDesignTheme
 fun GenresScreen(
     viewModel: GenresViewModel = viewModel(),
     onBookClick: (Book) -> Unit = {},
-//    navController: NavController
+
 ) {
     val books = viewModel.genresBooks.collectAsState().value
 
