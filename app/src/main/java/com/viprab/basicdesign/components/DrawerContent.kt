@@ -47,5 +47,12 @@ fun DrawerContent(onItemClick: (String) -> Unit) {
                 .clickable { onItemClick("settings") }
                 .padding(8.dp)
         )
+        Text(
+            "Search",
+            color = Color.White,
+            modifier = Modifier
+                .clickable { onItemClick("search") }
+                .padding(8.dp)
+        )
     }
 }

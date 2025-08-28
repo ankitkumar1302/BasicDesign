@@ -65,6 +65,10 @@ fun MainApp() {
         "genres" -> "Genres"
         "favorites" -> "Favorites"
         "profile" -> "Profile"
+        "settings" -> "Settings"
+        "search" -> "Search"
+        "authors" -> "Authors"
+        "authorBooks/{author}" -> "Author Books"
         else -> "My Novel"
     }
 
