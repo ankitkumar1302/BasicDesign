@@ -14,9 +14,7 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.Book
-import androidx.compose.material.icons.filled.Favorite
-import androidx.compose.material.icons.filled.Home
+import androidx.compose.material.icons.filled.*
 import androidx.compose.material3.Icon
 import androidx.compose.material3.Surface
 import androidx.compose.runtime.Composable
@@ -67,17 +65,31 @@ fun CustomBottomNavigationBar(
                 )
                 BottomNavItem(
                     navController = navController,
-                    route = "genres",
-                    icon = Icons.Filled.Book,
-                    label = "Genres",
-                    isSelected = currentDestination == "genres"
+                    route = "search",
+                    icon = Icons.Filled.Search,
+                    label = "Search",
+                    isSelected = currentDestination == "search"
                 )
                 BottomNavItem(
                     navController = navController,
-                    route = "favorites",
-                    icon = Icons.Filled.Favorite,
-                    label = "Favorites",
-                    isSelected = currentDestination == "favorites"
+                    route = "categories",
+                    icon = Icons.Filled.Category,
+                    label = "Browse",
+                    isSelected = currentDestination == "categories"
+                )
+                BottomNavItem(
+                    navController = navController,
+                    route = "reading-list",
+                    icon = Icons.Filled.LibraryBooks,
+                    label = "Library",
+                    isSelected = currentDestination == "reading-list"
+                )
+                BottomNavItem(
+                    navController = navController,
+                    route = "stats",
+                    icon = Icons.Filled.Analytics,
+                    label = "Stats",
+                    isSelected = currentDestination == "stats"
                 )
             }
         }

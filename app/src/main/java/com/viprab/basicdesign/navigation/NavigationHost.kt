@@ -13,6 +13,11 @@ import com.viprab.basicdesign.ui.favorites.FavoritesScreen
 import com.viprab.basicdesign.ui.genres.GenresScreen
 import com.viprab.basicdesign.ui.home.HomeScreen
 import com.viprab.basicdesign.ui.profile.ProfilePage
+import com.viprab.basicdesign.ui.search.SearchScreen
+import com.viprab.basicdesign.ui.categories.CategoriesScreen
+import com.viprab.basicdesign.ui.readinglist.ReadingListScreen
+import com.viprab.basicdesign.ui.stats.StatsScreen
+import com.viprab.basicdesign.ui.settings.SettingsScreen
 
 @OptIn(ExperimentalAnimationApi::class)
 @Composable
@@ -181,6 +186,173 @@ fun NavigationHost(navController: NavHostController, modifier: Modifier = Modifi
             }
         ) {
             ProfilePage()
+        }
+        
+        // Search Route
+        composable(
+            route = "search",
+            enterTransition = {
+                slideIntoContainer(
+                    AnimatedContentTransitionScope.SlideDirection.Left,
+                    animationSpec = tween(300)
+                )
+            },
+            exitTransition = {
+                slideOutOfContainer(
+                    AnimatedContentTransitionScope.SlideDirection.Left,
+                    animationSpec = tween(300)
+                )
+            },
+            popEnterTransition = {
+                slideIntoContainer(
+                    AnimatedContentTransitionScope.SlideDirection.Right,
+                    animationSpec = tween(300)
+                )
+            },
+            popExitTransition = {
+                slideOutOfContainer(
+                    AnimatedContentTransitionScope.SlideDirection.Right,
+                    animationSpec = tween(300)
+                )
+            }
+        ) {
+            SearchScreen(
+                onBookClick = { book ->
+                    navController.navigate("detail/${book.id}")
+                }
+            )
+        }
+        
+        // Categories Route
+        composable(
+            route = "categories",
+            enterTransition = {
+                slideIntoContainer(
+                    AnimatedContentTransitionScope.SlideDirection.Left,
+                    animationSpec = tween(300)
+                )
+            },
+            exitTransition = {
+                slideOutOfContainer(
+                    AnimatedContentTransitionScope.SlideDirection.Left,
+                    animationSpec = tween(300)
+                )
+            },
+            popEnterTransition = {
+                slideIntoContainer(
+                    AnimatedContentTransitionScope.SlideDirection.Right,
+                    animationSpec = tween(300)
+                )
+            },
+            popExitTransition = {
+                slideOutOfContainer(
+                    AnimatedContentTransitionScope.SlideDirection.Right,
+                    animationSpec = tween(300)
+                )
+            }
+        ) {
+            CategoriesScreen(
+                onBookClick = { book ->
+                    navController.navigate("detail/${book.id}")
+                }
+            )
+        }
+        
+        // Reading List Route
+        composable(
+            route = "reading-list",
+            enterTransition = {
+                slideIntoContainer(
+                    AnimatedContentTransitionScope.SlideDirection.Left,
+                    animationSpec = tween(300)
+                )
+            },
+            exitTransition = {
+                slideOutOfContainer(
+                    AnimatedContentTransitionScope.SlideDirection.Left,
+                    animationSpec = tween(300)
+                )
+            },
+            popEnterTransition = {
+                slideIntoContainer(
+                    AnimatedContentTransitionScope.SlideDirection.Right,
+                    animationSpec = tween(300)
+                )
+            },
+            popExitTransition = {
+                slideOutOfContainer(
+                    AnimatedContentTransitionScope.SlideDirection.Right,
+                    animationSpec = tween(300)
+                )
+            }
+        ) {
+            ReadingListScreen(
+                onBookClick = { book ->
+                    navController.navigate("detail/${book.id}")
+                }
+            )
+        }
+        
+        // Stats Route
+        composable(
+            route = "stats",
+            enterTransition = {
+                slideIntoContainer(
+                    AnimatedContentTransitionScope.SlideDirection.Left,
+                    animationSpec = tween(300)
+                )
+            },
+            exitTransition = {
+                slideOutOfContainer(
+                    AnimatedContentTransitionScope.SlideDirection.Left,
+                    animationSpec = tween(300)
+                )
+            },
+            popEnterTransition = {
+                slideIntoContainer(
+                    AnimatedContentTransitionScope.SlideDirection.Right,
+                    animationSpec = tween(300)
+                )
+            },
+            popExitTransition = {
+                slideOutOfContainer(
+                    AnimatedContentTransitionScope.SlideDirection.Right,
+                    animationSpec = tween(300)
+                )
+            }
+        ) {
+            StatsScreen()
+        }
+        
+        // Settings Route
+        composable(
+            route = "settings",
+            enterTransition = {
+                slideIntoContainer(
+                    AnimatedContentTransitionScope.SlideDirection.Left,
+                    animationSpec = tween(300)
+                )
+            },
+            exitTransition = {
+                slideOutOfContainer(
+                    AnimatedContentTransitionScope.SlideDirection.Left,
+                    animationSpec = tween(300)
+                )
+            },
+            popEnterTransition = {
+                slideIntoContainer(
+                    AnimatedContentTransitionScope.SlideDirection.Right,
+                    animationSpec = tween(300)
+                )
+            },
+            popExitTransition = {
+                slideOutOfContainer(
+                    AnimatedContentTransitionScope.SlideDirection.Right,
+                    animationSpec = tween(300)
+                )
+            }
+        ) {
+            SettingsScreen()
         }
     }
 }

@@ -23,8 +23,7 @@ import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.Logout
-import androidx.compose.material.icons.filled.Home
-import androidx.compose.material.icons.filled.Person
+import androidx.compose.material.icons.filled.*
 import androidx.compose.material3.DrawerState
 import androidx.compose.material3.Icon
 import androidx.compose.material3.Text
@@ -105,9 +104,25 @@ fun SlideDrawer(
                 DrawerItem(icon = Icons.Default.Home, label = "Home") {
                     closeDrawer(scope, drawerState, "home", onItemClick)
                 }
+                DrawerItem(icon = Icons.Default.Search, label = "Search") {
+                    closeDrawer(scope, drawerState, "search", onItemClick)
+                }
+                DrawerItem(icon = Icons.Default.Category, label = "Categories") {
+                    closeDrawer(scope, drawerState, "categories", onItemClick)
+                }
+                DrawerItem(icon = Icons.Default.LibraryBooks, label = "Reading List") {
+                    closeDrawer(scope, drawerState, "reading-list", onItemClick)
+                }
+                DrawerItem(icon = Icons.Default.Analytics, label = "Statistics") {
+                    closeDrawer(scope, drawerState, "stats", onItemClick)
+                }
+                DrawerItem(icon = Icons.Default.Settings, label = "Settings") {
+                    closeDrawer(scope, drawerState, "settings", onItemClick)
+                }
                 DrawerItem(icon = Icons.Default.Person, label = "Profile") {
                     closeDrawer(scope, drawerState, "profile", onItemClick)
                 }
+                Spacer(modifier = Modifier.weight(1f))
                 DrawerItem(icon = Icons.AutoMirrored.Filled.Logout, label = "Logout") {
                     closeDrawer(scope, drawerState, "logout", onItemClick)
                 }

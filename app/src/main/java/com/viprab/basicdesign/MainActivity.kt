@@ -55,7 +55,7 @@ fun MainApp() {
     val scope = rememberCoroutineScope()
     val commonBarColor = Color(0xCC1E1E2C) // Common bar color
     val mainRoutes =
-        listOf("home", "genres", "favorites") // Define main routes for swipe navigation
+        listOf("home", "search", "categories", "reading-list", "stats") // Define main routes for swipe navigation
 
     // Dynamic title based on the current screen
     val currentDestination =
@@ -65,6 +65,11 @@ fun MainApp() {
         "genres" -> "Genres"
         "favorites" -> "Favorites"
         "profile" -> "Profile"
+        "search" -> "Search"
+        "categories" -> "Categories"
+        "reading-list" -> "Reading List"
+        "stats" -> "Statistics"
+        "settings" -> "Settings"
         else -> "My Novel"
     }
 
