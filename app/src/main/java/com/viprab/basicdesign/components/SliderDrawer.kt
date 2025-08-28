@@ -25,6 +25,8 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.Logout
 import androidx.compose.material.icons.filled.Home
 import androidx.compose.material.icons.filled.Person
+import androidx.compose.material.icons.filled.Search
+import androidx.compose.material.icons.filled.Settings
 import androidx.compose.material3.DrawerState
 import androidx.compose.material3.Icon
 import androidx.compose.material3.Text
@@ -105,8 +107,14 @@ fun SlideDrawer(
                 DrawerItem(icon = Icons.Default.Home, label = "Home") {
                     closeDrawer(scope, drawerState, "home", onItemClick)
                 }
+                DrawerItem(icon = Icons.Default.Search, label = "Search") {
+                    closeDrawer(scope, drawerState, "search", onItemClick)
+                }
                 DrawerItem(icon = Icons.Default.Person, label = "Profile") {
                     closeDrawer(scope, drawerState, "profile", onItemClick)
+                }
+                DrawerItem(icon = Icons.Default.Settings, label = "Settings") {
+                    closeDrawer(scope, drawerState, "settings", onItemClick)
                 }
                 DrawerItem(icon = Icons.AutoMirrored.Filled.Logout, label = "Logout") {
                     closeDrawer(scope, drawerState, "logout", onItemClick)
