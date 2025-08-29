@@ -262,7 +262,7 @@ private fun QuickStatsGrid(
         horizontalArrangement = Arrangement.spacedBy(12.dp),
         verticalArrangement = Arrangement.spacedBy(12.dp)
     ) {
-        stats.forEach { (label, value, icon) ->
+    stats.forEach { (label, value, icon) ->
             QuickStatCard(
                 label = label,
                 value = value,
@@ -309,7 +309,7 @@ private fun QuickStatCard(
                 modifier = Modifier
                     .size(48.dp)
                     .align(Alignment.TopEnd)
-                    .scale(scale)
+                    .graphicsLayer(scaleX = scale, scaleY = scale)
             )
             
             Column(
@@ -589,9 +589,9 @@ private fun AchievementItem(achievement: Achievement) {
             .fillMaxWidth()
             .clip(RoundedCornerShape(12.dp))
             .background(
-                if (achievement.isUnlocked) 
-                    achievement.color.copy(alpha = 0.1f) 
-                else 
+                if (achievement.isUnlocked)
+                    achievement.color.copy(alpha = 0.1f)
+                else
                     Color(0xFF2D2B40)
             )
             .padding(16.dp),
@@ -661,7 +661,7 @@ private fun FlowRow(
     modifier: Modifier = Modifier,
     horizontalArrangement: Arrangement.Horizontal = Arrangement.Start,
     verticalArrangement: Arrangement.Vertical = Arrangement.Top,
-    content: @Composable () -> Unit
+    content: @Composable androidx.compose.foundation.layout.FlowRowScope.() -> Unit
 ) {
     androidx.compose.foundation.layout.FlowRow(
         modifier = modifier,

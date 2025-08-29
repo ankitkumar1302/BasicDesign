@@ -29,6 +29,8 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.compose.foundation.Image
+import androidx.compose.material3.TabRowDefaults.SecondaryIndicator
+import androidx.compose.material3.TabRowDefaults.tabIndicatorOffset
 import androidx.compose.ui.platform.LocalContext
 import coil.compose.rememberAsyncImagePainter
 import coil.request.ImageRequest
@@ -54,7 +56,7 @@ enum class ReadingStatus {
     ABANDONED
 }
 
-@OptIn(ExperimentalMaterial3Api::class)
+@OptIn(ExperimentalMaterial3Api::class, ExperimentalAnimationApi::class)
 @Composable
 fun ReadingListScreen(
     onBookClick: (Book) -> Unit = {}
@@ -92,8 +94,6 @@ fun ReadingListScreen(
             // Tab Row
             ScrollableTabRow(
                 selectedTabIndex = selectedTab,
-                containerColor = Color.Transparent,
-                contentColor = TextPrimary,
                 edgePadding = 16.dp,
                 indicator = { tabPositions ->
                     SecondaryIndicator(
@@ -147,9 +147,7 @@ fun ReadingListScreen(
             onClick = { /* Add new book */ },
             modifier = Modifier
                 .align(Alignment.BottomEnd)
-                .padding(16.dp),
-            containerColor = AccentColor,
-            contentColor = Color.White
+                .padding(16.dp)
         ) {
             Icon(
                 imageVector = Icons.Default.Add,
@@ -512,9 +510,7 @@ private fun WantToReadCard(
             
             // Action Button
             FilledIconButton(
-                onClick = { isSwipedToRead = true },
-                containerColor = AccentColor.copy(alpha = 0.2f),
-                contentColor = AccentColor
+                onClick = { isSwipedToRead = true }
             ) {
                 Icon(
                     imageVector = Icons.Default.PlayArrow,

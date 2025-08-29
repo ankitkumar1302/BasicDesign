@@ -254,7 +254,7 @@ private fun FeaturedCategoryCard(
             modifier = Modifier
                 .fillMaxSize()
                 .background(
-                    brush = Brush.diagonalGradient(
+                    brush = Brush.linearGradient(
                         colors = listOf(
                             category.color.copy(alpha = 0.3f),
                             category.color.copy(alpha = 0.1f)
@@ -505,7 +505,7 @@ private fun FlowRow(
     modifier: Modifier = Modifier,
     horizontalArrangement: Arrangement.Horizontal = Arrangement.Start,
     verticalArrangement: Arrangement.Vertical = Arrangement.Top,
-    content: @Composable () -> Unit
+    content: @Composable androidx.compose.foundation.layout.FlowRowScope.() -> Unit
 ) {
     androidx.compose.foundation.layout.FlowRow(
         modifier = modifier,
